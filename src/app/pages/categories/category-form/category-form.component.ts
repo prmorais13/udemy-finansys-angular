@@ -2,9 +2,11 @@ import { Component, OnInit, AfterContentChecked } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 
+import { switchMap } from 'rxjs/operators'
+import * as toastr from 'toastr'
+
 import { CategoryModel } from '../model/category.model'
 import { CategoryService } from '../service/category.service'
-import { switchMap } from 'rxjs/operators'
 
 @Component({
   selector: 'app-category-form',
@@ -13,7 +15,7 @@ import { switchMap } from 'rxjs/operators'
 })
 export class CategoryFormComponent implements OnInit, AfterContentChecked {
   categoryForm: FormGroup
-  category = new CategoryModel(null, null, null)
+  category = new CategoryModel()
   currentAction: string
   pageTitle: string
   serverErrorsMessages: string[] = null
@@ -22,7 +24,7 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
   constructor(
     private categoryService: CategoryService,
     private activatedRoute: ActivatedRoute,
-    router: Router,
+    private router: Router,
     private fb: FormBuilder
   ) {}
 
@@ -75,6 +77,41 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
       this.pageTitle = 'Cadastro de Categoria'
     } else {
       this.pageTitle = `Editando Categoria: ${this.category.name || ''}`
+    }
+  }
+
+  private createCategory() {
+    const category: CategoryModel = Object.assign(
+      new CategoryModel(),
+      this.categoryForm.value
+    )
+    return this.categoryService
+      .createCategory(category)
+      .subscribe(
+        resCategory => this.actionFormSuccess(resCategory),
+        error => this.actionFormError(error)
+      )
+  }
+
+  private updateCategory() {}
+
+  private actionFormSuccess(category: CategoryModel) {
+    toastr.success('Solicitação processada com sucesso!')
+    this.router
+      .navigateByUrl('categories', { skipLocationChange: true })
+      .then(() => this.router.navigate(['categories', category.id, 'edit']))
+  }
+
+  private actionFormError(error) {
+    toastr.error('Solicitação processada com sucesso!')
+    this.submittingForm = false
+
+    if (error.status === 422) {
+      this.serverErrorsMessages = JSON.parse(error._body).errors
+    } else {
+      this.serverErrorsMessages = [
+        'Ocorreu um erro inesperado. Tente novamente!'
+      ]
     }
   }
 }

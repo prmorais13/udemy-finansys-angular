@@ -20,7 +20,7 @@
     >
   </div>
 </div>
-<form [formGroup]="categoryForm" novalidate>
+<form [formGroup]="categoryForm" (ngSubmit)="createCategory()" novalidate>
   <div class="card">
     <div class="card-header">
       Informações sobre a categoria
@@ -29,18 +29,46 @@
       <div class="form-row">
         <div class="form-group col-md-4">
           <label for="name"></label>
-          <input type="text" class="form-control" id="name" />
+          <input
+            formControlName="name"
+            type="text"
+            class="form-control"
+            id="name"
+          />
+          <div
+            class="text-danger"
+            *ngIf="
+              categoryForm.get('name').invalid &&
+              categoryForm.get('name').touched
+            "
+          >
+            <div *ngIf="categoryForm.get('name').getError('required')">
+              Nome é obrigatório
+            </div>
+            <div *ngIf="categoryForm.get('name').getError('minLength')">
+              Nome deve ter no mínimo 6 caracetes
+            </div>
+          </div>
         </div>
 
         <div class="form-group col-md-8">
           <label for="description"></label>
-          <input type="text" class="form-control" id="description" />
+          <input
+            formControlName="description"
+            type="text"
+            class="form-control"
+            id="description"
+          />
         </div>
       </div>
     </div>
   </div>
 
-  <button type="submit" class="btn btn-primary btn-lg mt-2 float-right">
+  <button
+    [disabled]="submittingForm || categoryForm.invalid"
+    type="submit"
+    class="btn btn-primary btn-lg mt-2 float-right"
+  >
     Salvar
   </button>
 </form>
