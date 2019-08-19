@@ -4,14 +4,14 @@
     <li class="breadcrumb-item">
       <a [routerLink]="['/categories']">Categorias</a>
     </li>
-    <li class="breadcrumb-item active">Formulário de categoria</li>
+    <li class="breadcrumb-item active">{{ pageTitle }}</li>
   </ol>
 </nav>
 
 <div class="row mb-4">
   <div class="col-md">
     <h1 class="h2 border-left pl-2">
-      Formulário de categoria {{ currentAction }}
+      {{ pageTitle }}
     </h1>
   </div>
   <div class="col-md">
@@ -20,7 +20,7 @@
     >
   </div>
 </div>
-<form [formGroup]="categoryForm" (ngSubmit)="createCategory()" novalidate>
+<form [formGroup]="categoryForm" (ngSubmit)="submitForm()" novalidate>
   <div class="card">
     <div class="card-header">
       Informações sobre a categoria
@@ -45,7 +45,7 @@
             <div *ngIf="categoryForm.get('name').getError('required')">
               Nome é obrigatório
             </div>
-            <div *ngIf="categoryForm.get('name').getError('minLength')">
+            <div *ngIf="categoryForm.get('name').getError('minlength')">
               Nome deve ter no mínimo 6 caracetes
             </div>
           </div>
