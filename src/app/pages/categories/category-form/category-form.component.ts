@@ -117,14 +117,20 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
   }
 
   private actionFormSuccess(category: CategoryModel) {
-    toastr.success('Solicitação processada com sucesso!');
+    toastr.success('Solicitação processada com sucesso!', 'Sucesso', {
+      timeOut: 1500
+    });
     this.router
       .navigateByUrl('categories', { skipLocationChange: true })
       .then(() => this.router.navigate(['categories', category.id, 'edit']));
   }
 
   private actionFormError(error: any) {
-    toastr.error('Ocorreu um erro ao processar sua solicitação!');
+    toastr.error(
+      'Ocorreu um erro ao processar sua solicitação!',
+      'Erro Servidor',
+      { timeOut: 1500 }
+    );
     this.submittingForm = false;
 
     if (error.status === 422) {
