@@ -1,4 +1,4 @@
-import { CategoryModel } from '../../categories/model/category.model';
+import { CategoryModel } from '../../categories/model/category.model'
 
 export class EntryModel {
   constructor(
@@ -15,10 +15,10 @@ export class EntryModel {
 
   static types = {
     expense: 'Despesa',
-    renevue: 'Receita'
-  };
+    revenue: 'Receita'
+  }
 
   get paidText(): string {
-    return this.paid ? 'Pago' : 'Pendente';
+    return this.paid ? 'Pago' : 'Pendente'
   }
 }

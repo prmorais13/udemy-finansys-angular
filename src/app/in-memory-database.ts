@@ -53,7 +53,7 @@ export class InMemoryDatabase implements InMemoryDbService {
         paid: true,
         date: '15/10/2018',
         amount: '4.773,00',
-        type: 'renevue',
+        type: 'revenue',
         description: 'Salário outubro/2018'
       } as EntryModel,
       {

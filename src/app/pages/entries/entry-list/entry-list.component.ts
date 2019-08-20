@@ -8,7 +8,8 @@ import { catchError } from 'rxjs/operators'
 @Component({
   selector: 'app-entry-list',
   templateUrl: './entry-list.component.html',
-  styleUrls: ['./entry-list.component.scss']
+  styleUrls: ['./entry-list.component.scss'],
+  preserveWhitespaces: true
 })
 export class EntryListComponent implements OnInit {
   entries$: Observable<EntryModel[]>
