@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable, EMPTY } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 import { EntryService } from '../service/Entry.service';
 import { EntryModel } from '../model/Entry.model';
-import { Observable, EMPTY } from 'rxjs';
-import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-entry-list',

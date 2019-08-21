@@ -2,8 +2,10 @@
   "name": "udemy-finansys-angular",
   "version": "0.0.0",
   "scripts": {
+    "start:dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start",
     "ng": "ng",
     "start": "ng serve",
+    "server": "json-server db.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -37,6 +39,7 @@
     "bootstrap": "^4.3.1",
     "chart.js": "^2.8.0",
     "codelyzer": "^5.0.0",
+    "concurrently": "^4.1.2",
     "currency-formatter": "^1.5.5",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
