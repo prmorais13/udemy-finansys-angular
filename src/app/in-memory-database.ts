@@ -1,6 +1,6 @@
-import { InMemoryDbService } from 'angular-in-memory-web-api'
-import { CategoryModel } from './pages/categories/model/category.model'
-import { EntryModel } from './pages/entries/model/entry.model'
+import { InMemoryDbService } from 'angular-in-memory-web-api';
+import { CategoryModel } from './pages/categories/model/category.model';
+import { EntryModel } from './pages/entries/model/entry.model';
 
 export class InMemoryDatabase implements InMemoryDbService {
   // createDb(): Observable<any> {
@@ -20,7 +20,7 @@ export class InMemoryDatabase implements InMemoryDbService {
       { id: 3, name: 'Lazer', description: 'Cinema, parque, praia, bar, etc' },
       { id: 4, name: 'Salário', description: 'Recebimento salário' },
       { id: 5, name: 'Extra', description: 'Trabalhos extras' }
-    ]
+    ];
 
     const entries: EntryModel[] = [
       {
@@ -78,8 +78,8 @@ export class InMemoryDatabase implements InMemoryDbService {
         type: 'expense',
         description: 'Filme os vingadores'
       } as EntryModel
-    ]
+    ];
 
-    return { categories, entries }
+    return { categories, entries };
   }
 }

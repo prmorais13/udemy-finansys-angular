@@ -1,0 +1,106 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "Moradia",
+      "description": "Pagamentos contas da casa"
+    },
+    {
+      "id": 2,
+      "name": "Saúde",
+      "description": "Plano de saúde, remédios exames"
+    },
+    {
+      "id": 3,
+      "name": "Lazer",
+      "description": "Cinema, parque, praia, bar, etc"
+    },
+    {
+      "id": 4,
+      "name": "Salário",
+      "description": "Recebimento salário"
+    },
+    {
+      "id": 5,
+      "name": "Extra",
+      "description": "Trabalhos extras"
+    }
+  ],
+  "entries": [
+    {
+      "id": 1,
+      "name": "Gás de cozinha",
+      "categoryId": 1,
+      "category": {
+        "id": 1,
+        "name": "Moradia",
+        "description": "Pagamentos contas da casa"
+      },
+      "paid": true,
+      "date": "14/10/2018",
+      "amount": "70,80",
+      "type": "expense",
+      "description": "Botijão de 13 Kg"
+    },
+    {
+      "id": 2,
+      "name": "Suplemento",
+      "categoryId": 2,
+      "category": {
+        "id": 2,
+        "name": "Saúde",
+        "description": "Plano de saúde e remédios"
+      },
+      "paid": false,
+      "date": "14/10/2018",
+      "amount": "15,80",
+      "type": "expense",
+      "description": "Suplemento vitamínico"
+    },
+    {
+      "id": 3,
+      "name": "Salário PMN",
+      "categoryId": 4,
+      "category": {
+        "id": 4,
+        "name": "Salário",
+        "description": "Recebimento salário"
+      },
+      "paid": false,
+      "date": "15/10/2018",
+      "amount": "4.773,00",
+      "type": "revenue",
+      "description": "Salário outubro/2018"
+    },
+    {
+      "id": 4,
+      "name": "Prestação casa",
+      "categoryId": 1,
+      "category": {
+        "id": 1,
+        "name": "Moradia",
+        "description": "Pagamentos contas da casa"
+      },
+      "paid": false,
+      "date": "16/10/2018",
+      "amount": "590,00",
+      "type": "expense",
+      "description": "Prestação outubro/2018"
+    },
+    {
+      "id": 5,
+      "name": "Cinema",
+      "categoryId": 3,
+      "category": {
+        "id": 3,
+        "name": "Lazer",
+        "description": "Cinema, parque, praia, bar, etc"
+      },
+      "paid": false,
+      "date": "20/10/2018",
+      "amount": "50,00",
+      "type": "expense",
+      "description": "Filme os vingadores"
+    }
+  ]
+}

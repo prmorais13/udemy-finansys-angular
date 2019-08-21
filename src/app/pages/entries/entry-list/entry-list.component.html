@@ -44,9 +44,12 @@
           [class.text-danger]="entry.type === 'expense'"
           >{{ entry.amount }}</strong
         >
+        <br />
+        <!-- <span class="badge badge-light">{{
+          entry.paid ? 'Pago' : 'Pedente'
+        }}</span> -->
+        <span class="badge badge-light">{{ entry.paidText }}</span>
       </td>
-      <br />
-      <span class="badge badge-light">{{ entry.paidText }}</span>
 
       <td class="text-center">
         <a [routerLink]="[entry.id, 'edit']" class="btn btn-outline-info btn-sm"
