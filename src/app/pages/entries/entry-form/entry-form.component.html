@@ -27,8 +27,32 @@
     </div>
     <div class="card-body">
       <div class="form-row">
-        <div class="form-group col-md-4">
-          <label for="name"></label>
+        <!-- Campo type -->
+        <div class="form-group col-md-2">
+          <label for="type">Tipo</label>
+          <select
+            name="type"
+            formControlName="type"
+            class="form-control"
+            id="type"
+          >
+            <option value="expense">Despesa</option>
+            <option value="revenue">Receita</option>
+          </select>
+          <div
+            class="text-danger"
+            *ngIf="
+              entryForm.get('type').invalid && entryForm.get('type').touched
+            "
+          >
+            <div *ngIf="entryForm.get('type').getError('required')">
+              Tipo é obrigatório
+            </div>
+          </div>
+        </div>
+        <!-- Campo name -->
+        <div class="form-group col-md-5">
+          <label for="name">Lançamento</label>
           <input
             formControlName="name"
             type="text"
@@ -49,9 +73,12 @@
             </div>
           </div>
         </div>
+      </div>
 
+      <div class="form-row">
+        <!-- Campo description -->
         <div class="form-group col-md-8">
-          <label for="description"></label>
+          <label for="description">Descrição</label>
           <input
             formControlName="description"
             type="text"
