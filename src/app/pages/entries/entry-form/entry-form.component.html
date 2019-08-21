@@ -27,7 +27,7 @@
     </div>
     <div class="card-body">
       <div class="form-row">
-        <!-- Campo type -->
+        <!-- Início type -->
         <div class="form-group col-md-2">
           <label for="type">Tipo</label>
           <select
@@ -50,7 +50,9 @@
             </div>
           </div>
         </div>
-        <!-- Campo name -->
+        <!-- fim type -->
+
+        <!-- Início name -->
         <div class="form-group col-md-5">
           <label for="name">Lançamento</label>
           <input
@@ -73,10 +75,43 @@
             </div>
           </div>
         </div>
+        <!-- fim name -->
+
+        <!-- Inicio amount -->
+        <div class="form-group col-md-3">
+          <label for="amount">Valor</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                R$
+              </div>
+            </div>
+            <input
+              [imask]="imaskConfig"
+              formControlName="amount"
+              type="text"
+              class="form-control text-right"
+              id="amount"
+            />
+          </div>
+          <div
+            class="text-danger"
+            *ngIf="
+              entryForm.get('amount').invalid && entryForm.get('amount').touched
+            "
+          >
+            <div *ngIf="entryForm.get('amount').getError('required')">
+              Valor é obrigatório
+            </div>
+          </div>
+        </div>
+        <!-- fim amount -->
       </div>
+      <!-- fim row -->
 
       <div class="form-row">
-        <!-- Campo description -->
+        <!-- Início row -->
+        <!-- Início description -->
         <div class="form-group col-md-8">
           <label for="description">Descrição</label>
           <input
@@ -86,9 +121,13 @@
             id="description"
           />
         </div>
+        <!-- fim description -->
       </div>
+      <!-- fim row -->
     </div>
+    <!-- fim card-body -->
   </div>
+  <!-- fim card-->
 
   <div class="alert alert-danger mt-3" *ngIf="serverErrorsMessages">
     <strong>Erro no servidor!</strong>
