@@ -30,6 +30,51 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
     radix: ','
   };
 
+  ptBr = {
+    firstDayOfWeek: 0,
+    dayNames: [
+      'Domingo',
+      'Segunda',
+      'Terça',
+      'Quarta',
+      'Quinta',
+      'Sexta',
+      'Sábado'
+    ],
+    dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Quin', 'Sex', 'Sab'],
+    dayNamesMin: ['D', 'M', 'T', 'Q', 'Q', 'S', 'S'],
+    monthNames: [
+      'Janeiro',
+      'Fevereiro',
+      'Março',
+      'Abril',
+      'Maio',
+      'Junho',
+      'Julho',
+      'Agosto',
+      'Setembro',
+      'Outubro',
+      'Novembro',
+      'Dezembro'
+    ],
+    monthNamesShort: [
+      'Jan',
+      'Fev',
+      'Mar',
+      'Abr',
+      'Mai',
+      'Jun',
+      'Jul',
+      'Ago',
+      'Set',
+      'Out',
+      'Nov',
+      'Dez'
+    ],
+    today: 'Hoje',
+    clear: 'Limpar'
+  };
+
   constructor(
     private entryService: EntryService,
     private activatedRoute: ActivatedRoute,
