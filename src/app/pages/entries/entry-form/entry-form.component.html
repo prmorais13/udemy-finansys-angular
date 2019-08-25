@@ -49,8 +49,8 @@
               Tipo é obrigatório
             </div>
           </div>
+          <!-- fim type -->
         </div>
-        <!-- fim type -->
 
         <!-- Início name -->
         <div class="form-group col-md-5">
@@ -74,8 +74,8 @@
               Nome deve ter no mínimo 6 caracetes
             </div>
           </div>
+          <!-- fim name -->
         </div>
-        <!-- fim name -->
 
         <!-- Inicio amount -->
         <div class="form-group col-md-3">
@@ -104,8 +104,8 @@
               Valor é obrigatório
             </div>
           </div>
+          <!-- fim amount -->
         </div>
-        <!-- fim amount -->
 
         <!-- Inicio data -->
         <div class="form-group col-md-2">
@@ -131,13 +131,43 @@
               Valor é obrigatório
             </div>
           </div>
+          <!-- fim data -->
         </div>
-        <!-- fim data -->
+        <!-- fim row -->
       </div>
-      <!-- fim row -->
 
+      <!-- Início row -->
       <div class="form-row">
-        <!-- Início row -->
+        <!-- Início paid -->
+        <div class="form-group col-md-2">
+          <label for="description">Pago</label>
+          <div class="btn-group">
+            <label
+              (click)="entryForm.get('paid').setValue(true)"
+              [class.active]="entryForm.get('paid').value === true"
+              class="btn btn-outline-info"
+              >Pago</label
+            >
+            <label
+              (click)="entryForm.get('paid').setValue(false)"
+              [class.active]="entryForm.get('paid').value === false"
+              class="btn btn-outline-info"
+              >Pendente</label
+            >
+            <div
+              class="text-danger"
+              *ngIf="
+                entryForm.get('paid').invalid && entryForm.get('paid').touched
+              "
+            >
+              <div *ngIf="entryForm.get('paid').getError('required')">
+                Valor é obrigatório
+              </div>
+            </div>
+          </div>
+          <!-- fim paid -->
+        </div>
+
         <!-- Início description -->
         <div class="form-group col-md-8">
           <label for="description">Descrição</label>
@@ -147,14 +177,14 @@
             class="form-control"
             id="description"
           />
+          <!-- fim description -->
         </div>
-        <!-- fim description -->
+        <!-- fim row -->
       </div>
-      <!-- fim row -->
+      <!-- fim card-body -->
     </div>
-    <!-- fim card-body -->
+    <!-- fim card-->
   </div>
-  <!-- fim card-->
 
   <div class="alert alert-danger mt-3" *ngIf="serverErrorsMessages">
     <strong>Erro no servidor!</strong>
