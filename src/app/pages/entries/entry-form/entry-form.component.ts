@@ -1,12 +1,15 @@
 import { Component, OnInit, AfterContentChecked } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 import { switchMap } from 'rxjs/operators';
 import * as toastr from 'toastr';
 
 import { EntryModel } from '../model/entry.model';
 import { EntryService } from '../service/entry.service';
+import { CategoryModel } from './../../categories/model/category.model';
+import { CategoryService } from '../../categories/service/category.service';
 
 @Component({
   selector: 'app-entry-form',
@@ -16,6 +19,7 @@ import { EntryService } from '../service/entry.service';
 export class EntryFormComponent implements OnInit, AfterContentChecked {
   entryForm: FormGroup;
   entry = new EntryModel();
+  categories$: Observable<CategoryModel[]>;
   currentAction: string;
   pageTitle: string;
   serverErrorsMessages: string[] = null;
@@ -79,13 +83,15 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
     private entryService: EntryService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private categoryService: CategoryService
   ) {}
 
   ngOnInit() {
     this.setCurrentAction();
     this.buildEntryForm();
     this.loadEntry();
+    this.loadCategories();
   }
 
   submitForm() {
@@ -96,6 +102,15 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
     } else {
       this.updateEntry();
     }
+  }
+
+  get typeOptions(): Array<any> {
+    return Object.entries(EntryModel.types).map(([value, text]) => {
+      return {
+        text,
+        value
+      };
+    });
   }
 
   ngAfterContentChecked(): void {
@@ -135,6 +150,10 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
           error => alert('Ocorreu um erro, tente mais tarde!')
         );
     }
+  }
+
+  private loadCategories() {
+    this.categories$ = this.categoryService.getCategories();
   }
 
   private setPageTitle() {
