@@ -168,8 +168,34 @@
           <!-- fim paid -->
         </div>
 
+        <!-- Início categoryId -->
+        <div class="form-group col-md-3">
+          <label for="categoryId">Categoria</label>
+          <select
+            name="categoryId"
+            formControlName="categoryId"
+            class="form-control"
+            id="categoryId"
+          >
+            <option value="1">Categoria 1</option>
+            <option value="2">Categoria 2</option>
+          </select>
+          <div
+            class="text-danger"
+            *ngIf="
+              entryForm.get('categoryId').invalid &&
+              entryForm.get('categoryId').touched
+            "
+          >
+            <div *ngIf="entryForm.get('categoryId').getError('required')">
+              Tipo é obrigatório
+            </div>
+          </div>
+          <!-- fim categoryId -->
+        </div>
+
         <!-- Início description -->
-        <div class="form-group col-md-8">
+        <div class="form-group col-md-7">
           <label for="description">Descrição</label>
           <input
             formControlName="description"
