@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Observable, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, flatMap, map } from 'rxjs/operators';
 
+import { CategoryService } from '../../categories/service/category.service';
 import { EntryModel } from '../model/entry.model';
 
 @Injectable({
@@ -13,7 +14,10 @@ export class EntryService {
   private readonly BASE_URL = 'api/entries';
   private readonly BASE_URI = 'http://localhost:3000/entries';
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private categoryService: CategoryService
+  ) {}
 
   // getEntries(): Observable<EntryModel[]> {
   //   return this.http
@@ -46,18 +50,28 @@ export class EntryService {
   }
 
   createEntry(entry: EntryModel): Observable<EntryModel> {
-    return this.http
-      .post<EntryModel>(this.BASE_URI, entry)
-      .pipe(catchError(this.handleError));
+    return this.categoryService.getCategory(entry.categoryId).pipe(
+      flatMap(category => {
+        entry.category = category;
+        return this.http
+          .post<EntryModel>(this.BASE_URI, entry)
+          .pipe(catchError(this.handleError));
+      })
+    );
   }
 
   updateEntry(entry: EntryModel): Observable<EntryModel> {
-    return this.http
-      .put<EntryModel>(`${this.BASE_URI}/${entry.id}`, entry)
-      .pipe(
-        catchError(this.handleError),
-        map(() => entry)
-      );
+    return this.categoryService.getCategory(entry.categoryId).pipe(
+      flatMap(category => {
+        entry.category = category;
+        return this.http
+          .put<EntryModel>(`${this.BASE_URI}/${entry.id}`, entry)
+          .pipe(
+            catchError(this.handleError),
+            map(() => entry)
+          );
+      })
+    );
   }
 
   deleteEntry(id: number | string) {
