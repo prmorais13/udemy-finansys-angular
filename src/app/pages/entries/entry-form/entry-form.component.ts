@@ -141,7 +141,9 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
   private loadEntry() {
     if (this.currentAction === 'edit') {
       this.activatedRoute.paramMap
-        .pipe(switchMap(params => this.entryService.getEntry(params.get('id'))))
+        .pipe(
+          switchMap(params => this.entryService.getResource(params.get('id')))
+        )
         .subscribe(
           data => {
             this.entry = data;
@@ -153,7 +155,7 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
   }
 
   private loadCategories() {
-    this.categories$ = this.categoryService.getCategories();
+    this.categories$ = this.categoryService.getResources();
   }
 
   private setPageTitle() {
@@ -170,7 +172,7 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
       this.entryForm.value
     );
     this.entryService
-      .createEntry(entry)
+      .createResource(entry)
       .subscribe(
         resEntry => this.actionFormSuccess(resEntry),
         error => this.actionFormError(error)

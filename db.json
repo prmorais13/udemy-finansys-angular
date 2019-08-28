@@ -8,7 +8,7 @@
     {
       "id": 2,
       "name": "Saúde",
-      "description": "Plano de saúde, remédios exames"
+      "description": "Plano de saúde, remédios, exames"
     },
     {
       "id": 3,
@@ -28,36 +28,6 @@
   ],
   "entries": [
     {
-      "id": 1,
-      "name": "Gás de cozinha",
-      "categoryId": 1,
-      "category": {
-        "id": 1,
-        "name": "Moradia",
-        "description": "Pagamentos contas da casa"
-      },
-      "paid": true,
-      "date": "14/10/2018",
-      "amount": "70,80",
-      "type": "expense",
-      "description": "Botijão de 13 Kg"
-    },
-    {
-      "id": 2,
-      "name": "Suplemento",
-      "categoryId": 2,
-      "category": {
-        "id": 2,
-        "name": "Saúde",
-        "description": "Plano de saúde e remédios"
-      },
-      "paid": false,
-      "date": "14/10/2018",
-      "amount": "15,80",
-      "type": "expense",
-      "description": "Suplemento vitamínico"
-    },
-    {
       "id": 3,
       "name": "Salário PMN",
       "categoryId": 4,
@@ -75,32 +45,17 @@
     {
       "id": 4,
       "name": "Prestação casa",
+      "description": "Prestação setembro/2018",
+      "type": "expense",
+      "amount": "590,00",
+      "date": "20/09/2018",
+      "paid": false,
       "categoryId": 1,
       "category": {
         "id": 1,
         "name": "Moradia",
-        "description": "Pagamentos contas da casa"
-      },
-      "paid": false,
-      "date": "16/10/2018",
-      "amount": "590,00",
-      "type": "expense",
-      "description": "Prestação outubro/2018"
-    },
-    {
-      "id": 5,
-      "name": "Cinema",
-      "categoryId": 3,
-      "category": {
-        "id": 3,
-        "name": "Lazer",
-        "description": "Cinema, parque, praia, bar, etc"
-      },
-      "paid": false,
-      "date": "20/10/2018",
-      "amount": "50,00",
-      "type": "expense",
-      "description": "Filme os vingadores"
+        "description": "Pagamentos contas da casa (água, luz, gás, internet, etc)"
+      }
     },
     {
       "id": 6,
@@ -124,6 +79,21 @@
       "type": "expense",
       "amount": "10,00",
       "date": "26/08/2019",
+      "paid": true,
+      "categoryId": "5",
+      "category": {
+        "id": 5,
+        "name": "Alimentação",
+        "description": "Refeições em casa e no trabalho"
+      }
+    },
+    {
+      "id": 8,
+      "name": "Almoço do dia",
+      "description": "Marmita",
+      "type": "expense",
+      "amount": "10,00",
+      "date": "28/08/2019",
       "paid": true,
       "categoryId": "5",
       "category": {

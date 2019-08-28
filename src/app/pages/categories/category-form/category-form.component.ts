@@ -69,7 +69,7 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
       this.activatedRoute.paramMap
         .pipe(
           switchMap(params =>
-            this.categoryService.getCategory(params.get('id'))
+            this.categoryService.getResource(params.get('id'))
           )
         )
         .subscribe(
@@ -96,7 +96,7 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
       this.categoryForm.value
     );
     this.categoryService
-      .createCategory(category)
+      .createResource(category)
       .subscribe(
         resCategory => this.actionFormSuccess(resCategory),
         error => this.actionFormError(error)
@@ -109,7 +109,7 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
       this.categoryForm.value
     );
     this.categoryService
-      .updateCategory(category)
+      .updateResource(category)
       .subscribe(
         resCategory => this.actionFormSuccess(resCategory),
         error => this.actionFormError(error)

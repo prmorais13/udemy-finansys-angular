@@ -34,7 +34,7 @@ export class EntryListComponent implements OnInit {
     const confirma = confirm(`Excluir a pagamento '${Entry.name}'?`);
 
     if (confirma) {
-      this.entryService.deleteEntry(Entry.id).subscribe(
+      this.entryService.deleteResource(Entry.id).subscribe(
         success => {
           console.log(`Categoria ${Entry.name} removido!`);
           this.onRefresh();

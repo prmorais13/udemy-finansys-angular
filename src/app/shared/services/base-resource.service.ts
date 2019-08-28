@@ -11,30 +11,30 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
     this.http = injector.get(HttpClient);
   }
 
-  getCategories(): Observable<T[]> {
+  getResources(): Observable<T[]> {
     return this.http.get<T[]>(this.BASE_URI).pipe(catchError(this.handleError));
   }
 
-  getCategory(id: number | string): Observable<T> {
+  getResource(id: number | string): Observable<T> {
     return this.http
       .get<T>(`${this.BASE_URI}/${id}`)
       .pipe(catchError(this.handleError));
   }
 
-  createCategory(resource: T): Observable<T> {
+  createResource(resource: T): Observable<T> {
     return this.http
       .post<T>(this.BASE_URI, resource)
       .pipe(catchError(this.handleError));
   }
 
-  updateCategory(resource: T): Observable<T> {
+  updateResource(resource: T): Observable<T> {
     return this.http.put<T>(`${this.BASE_URI}/${resource.id}`, resource).pipe(
       catchError(this.handleError),
       map(() => resource)
     );
   }
 
-  deleteCategory(id: number | string) {
+  deleteResource(id: number | string) {
     return this.http
       .delete(`${this.BASE_URI}/${id}`)
       .pipe(catchError(this.handleError));
@@ -44,15 +44,4 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
     console.log('Erro na requisição!', error);
     return throwError(error);
   }
-
-  // protected jsonDataToResources(jsonData: any[]): T[] {
-  //   const resources: T[] = [];
-
-  //   jsonData.forEach(el => {
-  //     const resource = Object.assign(new T(), el);
-  //     resources.push(resource);
-  //   });
-
-  //   return resources;
-  // }
 }

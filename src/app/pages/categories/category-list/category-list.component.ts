@@ -22,7 +22,7 @@ export class CategoryListComponent implements OnInit {
   }
 
   onRefresh() {
-    this.categories$ = this.categoryService.getCategories().pipe(
+    this.categories$ = this.categoryService.getResources().pipe(
       catchError(error => {
         console.error('Ocorreu um erro ao buscar categorias.', error);
         return EMPTY;
@@ -34,7 +34,7 @@ export class CategoryListComponent implements OnInit {
     const confirma = confirm(`Excluir a categoria '${category.name}'?`);
 
     if (confirma) {
-      this.categoryService.deleteCategory(category.id).subscribe(
+      this.categoryService.deleteResource(category.id).subscribe(
         success => {
           console.log(`Categoria ${category.name} removido!`);
           this.onRefresh();
