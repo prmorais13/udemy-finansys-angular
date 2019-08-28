@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Observable, throwError } from 'rxjs';
-import { catchError, flatMap, map } from 'rxjs/operators';
+import { catchError, flatMap, map, switchMap, mergeMap } from 'rxjs/operators';
 
 import { CategoryService } from '../../categories/service/category.service';
 import { EntryModel } from '../model/entry.model';

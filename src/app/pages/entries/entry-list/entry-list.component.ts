@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, EMPTY } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 import { EntryService } from '../service/Entry.service';
 import { EntryModel } from '../model/Entry.model';
@@ -22,6 +22,7 @@ export class EntryListComponent implements OnInit {
 
   onRefresh() {
     this.entries$ = this.entryService.getEntries().pipe(
+      map(entries => entries.sort((a, b) => b.id - a.id)),
       catchError(error => {
         console.error('Ocorreu um erro ao buscar pagamentos.', error);
         return EMPTY;

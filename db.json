@@ -116,6 +116,21 @@
         "name": "Alimentação",
         "description": "Refeições em casa e no trabalho"
       }
+    },
+    {
+      "id": 7,
+      "name": "Almoço do dia",
+      "description": "Marmita",
+      "type": "expense",
+      "amount": "10,00",
+      "date": "26/08/2019",
+      "paid": true,
+      "categoryId": "5",
+      "category": {
+        "id": 5,
+        "name": "Alimentação",
+        "description": "Refeições em casa e no trabalho"
+      }
     }
   ]
 }
