@@ -76,7 +76,8 @@ export class EntryService extends BaseResourceService<EntryModel> {
     const entries: EntryModel[] = [];
 
     jsonData.forEach(el => {
-      const entry = Object.assign(new EntryModel(), el);
+      // const entry = Object.assign(new EntryModel(), el);
+      const entry = EntryModel.fromJson(el);
       entries.push(entry);
     });
 

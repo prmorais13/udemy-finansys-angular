@@ -167,10 +167,12 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
   }
 
   private createEntry() {
-    const entry: EntryModel = Object.assign(
-      new EntryModel(),
-      this.entryForm.value
-    );
+    // const entry: EntryModel = Object.assign(
+    //   new EntryModel(),
+    //   this.entryForm.value
+    // );
+    const entry: EntryModel = EntryModel.fromJson(this.entryForm.value);
+
     this.entryService
       .createResource(entry)
       .subscribe(
@@ -180,10 +182,12 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
   }
 
   private updateEntry() {
-    const entry: EntryModel = Object.assign(
-      new EntryModel(),
-      this.entryForm.value
-    );
+    // const entry: EntryModel = Object.assign(
+    //   new EntryModel(),
+    //   this.entryForm.value
+    // );
+    const entry: EntryModel = EntryModel.fromJson(this.entryForm.value);
+
     this.entryService
       .updateEntry(entry)
       .subscribe(
