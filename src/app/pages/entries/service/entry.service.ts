@@ -35,30 +35,32 @@ export class EntryService extends BaseResourceService<EntryModel> {
   // }
 
   createResource(entry: EntryModel): Observable<EntryModel> {
-    return this.categoryService.getResource(entry.categoryId).pipe(
-      flatMap(category => {
-        entry.category = category;
-        return super.createResource(entry);
-        // return this.http
-        //   .post<EntryModel>(this.BASE_URI, entry)
-        //   .pipe(catchError(this.handleError));
-      })
-    );
+    return this.setCategorySendToServer(entry, super.createResource.bind(this));
+    // return this.categoryService.getResource(entry.categoryId).pipe(
+    //   flatMap(category => {
+    //     entry.category = category;
+    //     return super.createResource(entry);
+    //     return this.http
+    //       .post<EntryModel>(this.BASE_URI, entry)
+    //       .pipe(catchError(this.handleError));
+    //   })
+    // );
   }
 
   updateEntry(entry: EntryModel): Observable<EntryModel> {
-    return this.categoryService.getResource(entry.categoryId).pipe(
-      flatMap(category => {
-        entry.category = category;
-        return super.updateResource(entry);
-        // return this.http
-        //   .put<EntryModel>(`${this.BASE_URI}/${entry.id}`, entry)
-        //   .pipe(
-        //     catchError(this.handleError),
-        //     map(() => entry)
-        //   );
-      })
-    );
+    return this.setCategorySendToServer(entry, super.updateResource.bind(this));
+    // return this.categoryService.getResource(entry.categoryId).pipe(
+    //   flatMap(category => {
+    //     entry.category = category;
+    //     return super.updateResource(entry);
+    //     return this.http
+    //       .put<EntryModel>(`${this.BASE_URI}/${entry.id}`, entry)
+    //       .pipe(
+    //         catchError(this.handleError),
+    //         map(() => entry)
+    //       );
+    //   })
+    // );
   }
 
   // deleteResource(id: number | string) {
@@ -82,5 +84,17 @@ export class EntryService extends BaseResourceService<EntryModel> {
     });
 
     return entries;
+  }
+
+  private setCategorySendToServer(
+    entry: EntryModel,
+    sendFn: any
+  ): Observable<any> {
+    return this.categoryService.getResource(entry.categoryId).pipe(
+      flatMap(category => {
+        entry.category = category;
+        return sendFn(entry);
+      })
+    );
   }
 }
