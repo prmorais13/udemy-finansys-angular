@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 
-import { Observable, EMPTY } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Observable, EMPTY } from 'rxjs'
+import { catchError } from 'rxjs/operators'
 
-import { CategoryService } from '../service/category.service';
-import { CategoryModel } from '../model/category.model';
+import { CategoryService } from '../service/category.service'
+import { CategoryModel } from '../model/category.model'
+import { BaseResourceListComponent } from '../../../shared/components/base-resource-list/base-resource-list.component'
 
 @Component({
   selector: 'app-category-list',
@@ -12,37 +13,43 @@ import { CategoryModel } from '../model/category.model';
   styleUrls: ['./category-list.component.scss'],
   preserveWhitespaces: true
 })
-export class CategoryListComponent implements OnInit {
-  categories$: Observable<CategoryModel[]>;
-
-  constructor(private categoryService: CategoryService) {}
-
-  ngOnInit() {
-    this.onRefresh();
+export class CategoryListComponent extends BaseResourceListComponent<
+  CategoryModel
+> {
+  constructor(private categoryService: CategoryService) {
+    super(categoryService)
   }
 
-  onRefresh() {
-    this.categories$ = this.categoryService.getResources().pipe(
-      catchError(error => {
-        console.error('Ocorreu um erro ao buscar categorias.', error);
-        return EMPTY;
-      })
-    );
-  }
+  // categories$: Observable<CategoryModel[]>;
 
-  onDelete(category: CategoryModel) {
-    const confirma = confirm(`Excluir a categoria '${category.name}'?`);
+  // constructor(private categoryService: CategoryService) {}
 
-    if (confirma) {
-      this.categoryService.deleteResource(category.id).subscribe(
-        success => {
-          console.log(`Categoria ${category.name} removido!`);
-          this.onRefresh();
-        },
-        error => {
-          console.error(`Erro ao remover categoria. Tente mais tarde!`);
-        }
-      );
-    }
-  }
+  // ngOnInit() {
+  //   this.onRefresh();
+  // }
+
+  // onRefresh() {
+  //   this.categories$ = this.categoryService.getResources().pipe(
+  //     catchError(error => {
+  //       console.error('Ocorreu um erro ao buscar categorias.', error);
+  //       return EMPTY;
+  //     })
+  //   );
+  // }
+
+  // onDelete(category: CategoryModel) {
+  //   const confirma = confirm(`Excluir a categoria '${category.name}'?`);
+
+  //   if (confirma) {
+  //     this.categoryService.deleteResource(category.id).subscribe(
+  //       success => {
+  //         console.log(`Categoria ${category.name} removido!`);
+  //         this.onRefresh();
+  //       },
+  //       error => {
+  //         console.error(`Erro ao remover categoria. Tente mais tarde!`);
+  //       }
+  //     );
+  //   }
+  // }
 }
