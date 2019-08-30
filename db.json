@@ -29,11 +29,6 @@
       "id": 6,
       "name": "Educação",
       "description": "Mensalidade escola, livros, fardamento, taxas, etc"
-    },
-    {
-      "id": 7,
-      "name": "Educação",
-      "description": "Mensalidade escola, livros, fardamento, taxas, etc."
     }
   ],
   "entries": [
@@ -57,15 +52,10 @@
       "name": "Prestação casa",
       "description": "Prestação setembro/2018",
       "type": "expense",
-      "amount": "590,00",
+      "amount": "567,00",
       "date": "20/09/2018",
       "paid": false,
-      "categoryId": 1,
-      "category": {
-        "id": 1,
-        "name": "Moradia",
-        "description": "Pagamentos contas da casa (água, luz, gás, internet, etc)"
-      }
+      "categoryId": 1
     },
     {
       "id": 6,
@@ -110,6 +100,21 @@
         "id": 5,
         "name": "Alimentação",
         "description": "Refeições em casa e no trabalho"
+      }
+    },
+    {
+      "id": 9,
+      "name": "Almoço do dia",
+      "description": "Marmita",
+      "type": "expense",
+      "amount": "10,00",
+      "date": "29/08/2019",
+      "paid": true,
+      "categoryId": "5",
+      "category": {
+        "id": 5,
+        "name": "Alimentação",
+        "description": "Refeições em casa e no trabalho (Almoço, jantar, lanche, etc)"
       }
     }
   ]
