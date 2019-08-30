@@ -1,10 +1,12 @@
 import { OnInit, AfterContentChecked, Injector } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+
+import { switchMap } from 'rxjs/operators';
+import * as toastr from 'toastr';
 
 import { BaseResourceService } from '../../services/base-resource.service';
 import { BaseResourceModel } from '../../models/base-resource.model';
-import { switchMap } from 'rxjs/operators';
 
 export abstract class BaseResourceFormComponent<T extends BaseResourceModel>
   implements OnInit, AfterContentChecked {

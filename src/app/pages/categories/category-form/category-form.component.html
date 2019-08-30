@@ -20,7 +20,7 @@
     >
   </div>
 </div>
-<form [formGroup]="categoryForm" (ngSubmit)="submitForm()" novalidate>
+<form [formGroup]="resourceForm" (ngSubmit)="submitForm()" novalidate>
   <div class="card">
     <div class="card-header">
       Informações sobre a categoria
@@ -38,14 +38,14 @@
           <div
             class="text-danger"
             *ngIf="
-              categoryForm.get('name').invalid &&
-              categoryForm.get('name').touched
+              resourceForm.get('name').invalid &&
+              resourceForm.get('name').touched
             "
           >
-            <div *ngIf="categoryForm.get('name').getError('required')">
+            <div *ngIf="resourceForm.get('name').getError('required')">
               Nome é obrigatório
             </div>
-            <div *ngIf="categoryForm.get('name').getError('minlength')">
+            <div *ngIf="resourceForm.get('name').getError('minlength')">
               Nome deve ter no mínimo 6 caracetes
             </div>
           </div>
@@ -72,7 +72,7 @@
   </div>
 
   <button
-    [disabled]="submittingForm || categoryForm.invalid"
+    [disabled]="submittingForm || resourceForm.invalid"
     type="submit"
     class="btn btn-primary btn-lg mt-2 float-right"
   >

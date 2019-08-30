@@ -13,7 +13,7 @@
     {
       "id": 3,
       "name": "Lazer",
-      "description": "Cinema, parque, praia, bar, etc"
+      "description": "Cinema, parque, praia, bar, etc."
     },
     {
       "id": 4,
@@ -24,6 +24,16 @@
       "id": 5,
       "name": "Alimentação",
       "description": "Refeições em casa e no trabalho (Almoço, jantar, lanche, etc)"
+    },
+    {
+      "id": 6,
+      "name": "Educação",
+      "description": "Mensalidade escola, livros, fardamento, taxas, etc"
+    },
+    {
+      "id": 7,
+      "name": "Educação",
+      "description": "Mensalidade escola, livros, fardamento, taxas, etc."
     }
   ],
   "entries": [
