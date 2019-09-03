@@ -11,6 +11,6 @@ export class CategoryService extends BaseResourceService<CategoryModel> {
   // private readonly BASE_URI = 'http://localhost:3000/categories';
 
   constructor(protected injector: Injector) {
-    super('http://localhost:3000/categories', injector);
+    super('http://localhost:3000/categories', injector, CategoryModel.fromJson);
   }
 }

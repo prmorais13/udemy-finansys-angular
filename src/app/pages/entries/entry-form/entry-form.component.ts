@@ -2,6 +2,7 @@ import { Component, Injector, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 
 import { Observable } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 import { BaseResourceFormComponent } from '../../../shared/components/base-resource-form/base-resource-form.component';
 import { EntryModel } from '../model/entry.model';
@@ -86,15 +87,21 @@ export class EntryFormComponent extends BaseResourceFormComponent<EntryModel>
     protected categoryService: CategoryService,
     protected injector: Injector
   ) {
-    super(injector, entryService, EntryModel.fromJson, new EntryModel());
+    super(
+      injector,
+      entryService,
+      EntryModel.fromJson,
+      new EntryModel(),
+      'Lançamento'
+    );
   }
 
   ngOnInit() {
     // this.setCurrentAction();
     // this.buildEntryForm();
     // this.loadEntry();
-    this.loadCategories();
     super.ngOnInit();
+    this.loadCategories();
   }
 
   protected buildResourceForm(): void {
@@ -113,8 +120,8 @@ export class EntryFormComponent extends BaseResourceFormComponent<EntryModel>
   get typeOptions(): Array<any> {
     return Object.entries(EntryModel.types).map(([value, text]) => {
       return {
-        text,
-        value
+        value,
+        text
       };
     });
   }

@@ -1,11 +1,8 @@
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core';
 
-import { Observable, EMPTY } from 'rxjs'
-import { catchError } from 'rxjs/operators'
-
-import { CategoryService } from '../service/category.service'
-import { CategoryModel } from '../model/category.model'
-import { BaseResourceListComponent } from '../../../shared/components/base-resource-list/base-resource-list.component'
+import { CategoryService } from '../service/category.service';
+import { CategoryModel } from '../model/category.model';
+import { BaseResourceListComponent } from '../../../shared/components/base-resource-list/base-resource-list.component';
 
 @Component({
   selector: 'app-category-list',
@@ -17,7 +14,7 @@ export class CategoryListComponent extends BaseResourceListComponent<
   CategoryModel
 > {
   constructor(private categoryService: CategoryService) {
-    super(categoryService)
+    super(categoryService, 'a Categoria:');
   }
 
   // categories$: Observable<CategoryModel[]>;

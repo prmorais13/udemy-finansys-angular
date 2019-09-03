@@ -24,7 +24,8 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel>
     protected injector: Injector,
     protected baseResourceService: BaseResourceService<T>,
     protected jsonDataToResourceFn: (jsonData: any) => T,
-    public resource: T
+    public resource: T,
+    protected msg: string
   ) {
     this.router = this.injector.get(Router);
     this.activatedRoute = this.injector.get(ActivatedRoute);
@@ -108,7 +109,6 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel>
 
   protected updateResource() {
     const resource: T = this.jsonDataToResourceFn(this.resourceForm.value);
-
     this.baseResourceService
       .updateResource(resource)
       .subscribe(
@@ -118,9 +118,13 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel>
   }
 
   protected actionFormSuccess(resource: T) {
-    toastr.success('Solicitação processada com sucesso!', 'Sucesso', {
-      timeOut: 1500
-    });
+    toastr.success(
+      `${this.msg} ${this.resource.name.toUpperCase()} salva com sucesso!`,
+      'Sucesso',
+      {
+        timeOut: 1500
+      }
+    );
 
     const baseComponentPath: string = this.activatedRoute.snapshot.parent.url[0]
       .path;
@@ -134,7 +138,9 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel>
 
   protected actionFormError(error: any) {
     toastr.error(
-      'Ocorreu um erro ao processar sua solicitação!',
+      `Erro ao salvar ${
+        this.msg
+      } ${this.resource.name.toUpperCase()}!. Tente mais tarde.`,
       'Erro Servidor',
       { timeOut: 1500 }
     );

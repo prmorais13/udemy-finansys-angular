@@ -28,7 +28,8 @@ export class CategoryFormComponent extends BaseResourceFormComponent<
       injector,
       categoryService,
       CategoryModel.fromJson,
-      new CategoryModel()
+      new CategoryModel(),
+      'Categoria'
     );
   }
 
